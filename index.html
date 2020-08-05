@@ -442,9 +442,9 @@ d3.csv("data/GDPdata1.csv",
     Europe_and_Central_Asia 	 : +d.EuropeandCentralAsia,
     Middle_East_and_North_Africa 	 : +d.MiddleEastandNorthAfrica,
     North_America  : +d.NorthAmerica,
-    South_Asia : +d.SouthAsia,
     Sub_Saharan_Africa	: +d.SubSaharanAfrica,
-    Latin_America_and_Caribbean : +d.LatinAmericaandCaribbean
+    Latin_America_and_Caribbean : +d.LatinAmericaandCaribbean,
+    South_Asia : +d.SouthA
 
         }
   },
@@ -499,10 +499,6 @@ d3.csv("data/GDPdata1.csv",
     .x(function(d) { return x(d.Time); })
     .y(function(d) { return y(d.North_America); });
 
-    var SouthA = d3.line()
-    .x(function(d) { return x(d.Time); })
-    .y(function(d) { return y(d.South_Asia); });
-
     var Sub = d3.line()
     .x(function(d) { return x(d.Time); })
     .y(function(d) { return y(d.Sub_Saharan_Africa); });
@@ -511,6 +507,9 @@ d3.csv("data/GDPdata1.csv",
     .x(function(d) { return x(d.Time); })
     .y(function(d) { return y(d.Latin_America_and_Caribbean); });
 
+    var SouthA = d3.line()
+    .x(function(d) { return x(d.Time); })
+    .y(function(d) { return y(d.South_Asia); });
 	
   //coloring lines
     svg.append("path")
@@ -542,13 +541,6 @@ d3.csv("data/GDPdata1.csv",
       .attr("stroke", "orange")
       .attr("stroke-width", 1.5)
       .attr("d", North);
-	
-  svg.append("path")
-      .datum(data)
-      .attr("fill", "none")
-      .attr("stroke", "orange")
-      .attr("stroke-width", 1.5)
-      .attr("d", SouthA);
 
      svg.append("path")
       .datum(data)
@@ -563,6 +555,13 @@ d3.csv("data/GDPdata1.csv",
       .attr("stroke", "black")
       .attr("stroke-width", 1.5)
       .attr("d", Latin);
+
+   svg.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "orange")
+      .attr("stroke-width", 1.5)
+      .attr("d", SouthA);
 
    var div = d3.select("#chartarea").append("div")
      .attr("class", "tooltip")
@@ -580,6 +579,48 @@ svg.selectAll("dot")
          .duration(200)
          .style("opacity", .9);
        div.html(d.East_Asia_and_Pacific)
+         .style("left", (d3.event.pageX) + "px")
+         .style("top", (d3.event.pageY - 28) + "px");
+       })
+     .on("mouseout", function(d) {
+       div.transition()
+         .duration(500)
+         .style("opacity", 0);
+       });
+	
+svg.selectAll("dot")
+     .data(data)
+   .enter().append("circle")
+     .attr("r", 3)
+     .attr("fill", "red")
+     .attr("cx", function(d) { return x(d.Time); })
+     .attr("cy", function(d) { return y(d.Europe_and_Central_Asia); })
+     .on("mouseover", function(d) {
+       div.transition()
+         .duration(200)
+         .style("opacity", .9);
+       div.html(d.Europe_and_Central_Asia)
+         .style("left", (d3.event.pageX) + "px")
+         .style("top", (d3.event.pageY - 28) + "px");
+       })
+     .on("mouseout", function(d) {
+       div.transition()
+         .duration(500)
+         .style("opacity", 0);
+       });
+	
+svg.selectAll("dot")
+     .data(data)
+   .enter().append("circle")
+     .attr("r", 3)
+     .attr("fill", "green")
+     .attr("cx", function(d) { return x(d.Time); })
+     .attr("cy", function(d) { return y(d.Middle_East_and_North_Africa); })
+     .on("mouseover", function(d) {
+       div.transition()
+         .duration(200)
+         .style("opacity", .9);
+       div.html(d.Middle_East_and_North_Africa)
          .style("left", (d3.event.pageX) + "px")
          .style("top", (d3.event.pageY - 28) + "px");
        })
@@ -614,56 +655,14 @@ svg.selectAll("dot")
      .data(data)
    .enter().append("circle")
      .attr("r", 3)
-     .attr("fill", "red")
+     .attr("fill", "purple")
      .attr("cx", function(d) { return x(d.Time); })
-     .attr("cy", function(d) { return y(d.Europe_and_Central_Asia); })
+     .attr("cy", function(d) { return y(d.Sub_Saharan_Africa); })
      .on("mouseover", function(d) {
        div.transition()
          .duration(200)
          .style("opacity", .9);
-       div.html(d.Europe_and_Central_Asia)
-         .style("left", (d3.event.pageX) + "px")
-         .style("top", (d3.event.pageY - 28) + "px");
-       })
-     .on("mouseout", function(d) {
-       div.transition()
-         .duration(500)
-         .style("opacity", 0);
-       });
-
-svg.selectAll("dot")
-     .data(data)
-   .enter().append("circle")
-     .attr("r", 3)
-     .attr("fill", "green")
-     .attr("cx", function(d) { return x(d.Time); })
-     .attr("cy", function(d) { return y(d.Middle_East_and_North_Africa); })
-     .on("mouseover", function(d) {
-       div.transition()
-         .duration(200)
-         .style("opacity", .9);
-       div.html(d.Middle_East_and_North_Africa)
-         .style("left", (d3.event.pageX) + "px")
-         .style("top", (d3.event.pageY - 28) + "px");
-       })
-     .on("mouseout", function(d) {
-       div.transition()
-         .duration(500)
-         .style("opacity", 0);
-       });
-	
-svg.selectAll("dot")
-     .data(data)
-   .enter().append("circle")
-     .attr("r", 3)
-     .attr("fill", "yellow")
-     .attr("cx", function(d) { return x(d.Time); })
-     .attr("cy", function(d) { return y(d.South_Asia); })
-     .on("mouseover", function(d) {
-       div.transition()
-         .duration(200)
-         .style("opacity", .9);
-       div.html(d.South_Asia)
+       div.html(d.Sub_Saharan_Africa)
          .style("left", (d3.event.pageX) + "px")
          .style("top", (d3.event.pageY - 28) + "px");
        })
@@ -693,19 +692,19 @@ svg.selectAll("dot")
          .duration(500)
          .style("opacity", 0);
        });
-	
+
 svg.selectAll("dot")
      .data(data)
    .enter().append("circle")
      .attr("r", 3)
-     .attr("fill", "purple")
+     .attr("fill", "yellow")
      .attr("cx", function(d) { return x(d.Time); })
-     .attr("cy", function(d) { return y(d.Sub_Saharan_Africa); })
+     .attr("cy", function(d) { return y(d.South_Asia); })
      .on("mouseover", function(d) {
        div.transition()
          .duration(200)
          .style("opacity", .9);
-       div.html(d.Sub_Saharan_Africa)
+       div.html(d.South_Asia)
          .style("left", (d3.event.pageX) + "px")
          .style("top", (d3.event.pageY - 28) + "px");
        })
@@ -714,6 +713,10 @@ svg.selectAll("dot")
          .duration(500)
          .style("opacity", 0);
        });
+	
+
+	
+
 	
 }, )
 
