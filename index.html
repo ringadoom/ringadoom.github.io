@@ -499,7 +499,7 @@ d3.csv("data/GDPdata1.csv",
     .x(function(d) { return x(d.Time); })
     .y(function(d) { return y(d.North_America); });
 
-    var South = d3.line()
+    var SAsia = d3.line()
     .x(function(d) { return x(d.Time); })
     .y(function(d) { return y(d.South_Asia); });
 
@@ -548,7 +548,7 @@ d3.csv("data/GDPdata1.csv",
       .attr("fill", "none")
       .attr("stroke", "yellow")
       .attr("stroke-width", 1.5)
-      .attr("d", South);
+      .attr("d", SAsia);
 
      svg.append("path")
       .datum(data)
