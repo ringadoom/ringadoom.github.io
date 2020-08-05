@@ -546,7 +546,7 @@ d3.csv("data/GDPdata1.csv",
     svg.append("path")
       .datum(data)
       .attr("fill", "none")
-      .attr("stroke", "gray")
+      .attr("stroke", "yellow")
       .attr("stroke-width", 1.5)
       .attr("d", South);
 
@@ -656,7 +656,7 @@ svg.selectAll("dot")
      .data(data)
    .enter().append("circle")
      .attr("r", 3)
-     .attr("fill", "gray")
+     .attr("fill", "yellow")
      .attr("cx", function(d) { return x(d.Time); })
      .attr("cy", function(d) { return y(d.South_Asia); })
      .on("mouseover", function(d) {
