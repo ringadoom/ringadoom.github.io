@@ -286,7 +286,7 @@
 			float:left;
 			width:150px;
 			height:50px;
-			border:5px solid gray;
+			border:5px solid yellow;
 			margin-left:10px;
 			margin-top:10px;
 			font-size: 15px;
@@ -442,7 +442,7 @@ d3.csv("data/GDPdata1.csv",
     Europe_and_Central_Asia 	 : +d.EuropeandCentralAsia,
     Middle_East_and_North_Africa 	 : +d.MiddleEastandNorthAfrica,
     North_America  : +d.NorthAmerica,
-    South_Asia 	: +d.SouthAsia,
+    South_Asia : +d.SouthAsia,
     Sub_Saharan_Africa	: +d.SubSaharanAfrica,
     Latin_America_and_Caribbean : +d.LatinAmericaandCaribbean
 
@@ -499,7 +499,7 @@ d3.csv("data/GDPdata1.csv",
     .x(function(d) { return x(d.Time); })
     .y(function(d) { return y(d.North_America); });
 
-    var SAsia = d3.line()
+    var SouthA = d3.line()
     .x(function(d) { return x(d.Time); })
     .y(function(d) { return y(d.South_Asia); });
 
@@ -542,13 +542,13 @@ d3.csv("data/GDPdata1.csv",
       .attr("stroke", "orange")
       .attr("stroke-width", 1.5)
       .attr("d", North);
-
-    svg.append("path")
+	
+  svg.append("path")
       .datum(data)
       .attr("fill", "none")
-      .attr("stroke", "yellow")
+      .attr("stroke", "orange")
       .attr("stroke-width", 1.5)
-      .attr("d", SAsia);
+      .attr("d", SouthA);
 
      svg.append("path")
       .datum(data)
