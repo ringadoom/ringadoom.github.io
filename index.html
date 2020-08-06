@@ -567,17 +567,16 @@ d3.csv("data/GDPdata1.csv",
      .attr("class", "tooltip")
      .style("opacity", 0);
 
-// Highlight the specie that is hovered
+// Highlight 
   var highlight = function(d){
-
-    //selected_specie = d.East_Asia_and_Pacific
-
+	  
     // first every group turns grey
     d3.selectAll(".line")
       .transition().duration(200)
       .style("stroke", "lightgrey")
       .style("opacity", "0.2")
-    // Second the hovered specie takes its color
+	  
+    // Second 
     d3.selectAll("." + d.East_Asia_and_Pacific)
       .transition().duration(200)
       .style("stroke", "brown")
